@@ -26,3 +26,5 @@ replay_pid*
 # can be ignored
 .settings
 target/
+*.project
+*.classpath

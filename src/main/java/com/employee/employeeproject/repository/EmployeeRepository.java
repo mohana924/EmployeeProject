@@ -1,7 +1,11 @@
 package com.employee.employeeproject.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface EmployeeRepository extends JpaRepository<com.employee.employeeproject.utility.Employee, Long> {
+import com.employee.employeeproject.entity.Employee;
+
+@Repository
+public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
 }

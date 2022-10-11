@@ -2,15 +2,18 @@ package com.employee.employeeproject.service;
 
 import java.util.List;
 
-import com.employee.employeeproject.utility.Employee;
+import org.springframework.stereotype.Service;
 
+import com.employee.employeeproject.entity.Employee;
+
+@Service
 public interface EmployeeService {
 
 	public List<Employee> getAllEmployees();
 
 	public Employee getEmployeeById(Long id);
 
-	public void saveEmployee(Employee employee);
+	public Employee saveEmployee(Employee employee);
 
 	public void deleteEmployeeById(long id);
 
