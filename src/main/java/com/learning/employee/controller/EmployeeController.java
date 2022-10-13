@@ -1,4 +1,4 @@
-package com.employee.employeeproject.controller;
+package com.learning.employee.controller;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.employee.employeeproject.entity.Employee;
-import com.employee.employeeproject.service.EmployeeService;
+import com.learning.employee.entity.Employee;
+import com.learning.employee.service.EmployeeService;
 
 @RestController
 @RequestMapping("/employee")

@@ -1,10 +1,10 @@
-package com.employee.employeeproject.service;
+package com.learning.employee.service;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.employee.employeeproject.entity.Employee;
+import com.learning.employee.entity.Employee;
 
 @Service
 public interface EmployeeService {

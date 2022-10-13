@@ -1,30 +1,36 @@
-package com.employee.employeeproject.entity;
+package com.learning.employee.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.springframework.data.annotation.Id;
 
-@Entity
-@Table(name = "employees")
+import com.azure.spring.data.cosmos.core.mapping.Container;
+import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
+
+@Container(containerName = "employees", ru = "100")
 public class Employee {
 
+	public Employee(long id, String firstName, String lastName, String role, String email) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.role = role;
+		this.email = email;
+	}
+
+	public Employee() {
+		// TODO Auto-generated constructor stub
+	}
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@PartitionKey
 	private long id;
 
-	@Column(name = "first_name")
 	private String firstName;
 
-	@Column(name = "last_name")
 	private String lastName;
 
-	@Column(name = "role")
 	private String role;
 
-	@Column(name = "email")
 	private String email;
 
 	public long getId() {
