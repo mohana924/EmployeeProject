@@ -13,8 +13,14 @@ public interface EmployeeService {
 
 	public Employee getEmployeeById(Long id);
 
-	public Employee saveEmployee(Employee employee);
+	public Employee createEmployee(Employee employee);
 
-	public void deleteEmployeeById(long id);
+	public Employee updateEmployee(Long id, Employee employee);
+
+	public void deleteEmployee(Long id);
 
 }
+
+	
+	
+
