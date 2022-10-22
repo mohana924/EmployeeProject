@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.learning.employee.entity.Employee;
 import com.learning.employee.service.EmployeeService;
 
+import reactor.core.publisher.Mono;
+
 @RestController
 @RequestMapping("/employee")
 public class EmployeeController {
@@ -33,12 +35,14 @@ public class EmployeeController {
 	}
 
 	@GetMapping("/{id}")
-	public Employee getEmployeeById(@PathVariable long id) {
-		return this.employeeService.getEmployeeById(id);
+	public ResponseEntity<Mono<Employee>> findById(@PathVariable long id) {
+		Mono<Employee> e = employeeService.getEmployeeById(id);
+		
+		return new ResponseEntity<Mono<Employee>>(e, HttpStatus.OK);
 	}
 
 	@DeleteMapping(value = "/delete/{id}")
-	public ResponseEntity<Object> delete(@PathVariable("id") Long id) {
+	public ResponseEntity<Object> deleteEmployee(@PathVariable("id") Long id) {
 		employeeService.deleteEmployee(id);
 		return new ResponseEntity<>("Employee is deleted successsfully", HttpStatus.OK);
 	}
@@ -50,7 +54,7 @@ public class EmployeeController {
 	}
 
 	@PutMapping(value = "/update/{id}")
-	public ResponseEntity<Object> updateProduct(@PathVariable("id") Long id, @RequestBody Employee employee) {
+	public ResponseEntity<Object> updateEmployee(@PathVariable("id") Long id, @RequestBody Employee employee) {
 		employeeService.updateEmployee(id, employee);
 		return new ResponseEntity<>("Employee is updated successsfully", HttpStatus.OK);
 	}

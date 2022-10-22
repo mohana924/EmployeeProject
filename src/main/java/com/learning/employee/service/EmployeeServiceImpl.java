@@ -25,42 +25,46 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public Employee getEmployeeById(Long id) {
+	public Mono<Employee> getEmployeeById(Long id) {
 		Mono<Employee> emp = repo.findById(id);
-		Employee employee = null;
+		
+		emp.subscribe( value -> System.out.println(value), 
+  			error -> error.printStackTrace(), 
+  			() -> System.out.println("Employee not found"));
+		/* 
 		if (emp!=null) {
-			employee = (emp);
+			employee = emp;
 		} else {
 			throw new RuntimeException(" Employee not found for id : " + id);
 		}
-		return employee;
+		*/
+		return emp;
 
 	}
 
 	@Override
-	public Employee createEmployee(Employee employee) {
-		repo.save(employee);
-		return employee;
+	public void createEmployee(Employee employee) {
+		repo.save(employee).subscribe();
+		
 	}
 
 	@Override
-	public Employee updateEmployee(Long id, Employee employee) {
-		Employee updateEmployee = getEmployeeById(id);
+	public Mono<Employee> updateEmployee(Long id, Employee employee) {
+		
+		return getEmployeeById(id).map(Employee -> {
+			employee.setId(employee.getId());
+			employee.setFirstName(employee.getFirstName());
+			employee.setLastName(employee.getLastName());
+			employee.setEmail(employee.getEmail());
+			employee.setRole(employee.getRole());
+			});
+			repo.save(employee).subscribe();
 
-		updateEmployee.setId(employee.getId());
-		updateEmployee.setFirstName(employee.getFirstName());
-		updateEmployee.setLastName(employee.getLastName());
-		updateEmployee.setEmail(employee.getEmail());
-		updateEmployee.setRole(employee.getRole());
-
-		repo.save(updateEmployee);
-
-		return updateEmployee;
 	}
 
 	@Override
-	public void deleteEmployee(Long id) {
-		this.repo.deleteById(id);
+	public Mono<Void> deleteEmployee(Long id) {
+		return repo.deleteById(id);
 
 	}
 	/* 
