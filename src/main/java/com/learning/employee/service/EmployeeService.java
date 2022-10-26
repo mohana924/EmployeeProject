@@ -2,19 +2,27 @@ package com.learning.employee.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
+
 
 import com.learning.employee.entity.Employee;
 
-@Service
+import reactor.core.publisher.Mono;
+
+
 public interface EmployeeService {
 
 	public List<Employee> getAllEmployees();
 
-	public Employee getEmployeeById(Long id);
+	public Mono<Employee> getEmployeeById(Long id);
 
-	public Employee saveEmployee(Employee employee);
+	public void createEmployee(Employee employee);
 
-	public void deleteEmployeeById(long id);
+	public Mono<Employee> updateEmployee(Long id, Employee employee);
+
+	Mono<Void> deleteEmployee(Long id);
 
 }
+
+	
+	
+

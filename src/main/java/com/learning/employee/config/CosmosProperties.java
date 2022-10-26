@@ -15,7 +15,7 @@ public class CosmosProperties {
 
 	public CosmosProperties() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public String getUri() {
