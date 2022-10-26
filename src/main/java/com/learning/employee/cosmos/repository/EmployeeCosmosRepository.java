@@ -11,5 +11,5 @@ import reactor.core.publisher.Flux;
 @Repository
 public interface EmployeeCosmosRepository extends ReactiveCosmosRepository<Employee, Long> {
 
-	Flux<Employee> findByFirstName(@Param("firstName") String firstName);
+	Flux<Employee> findByFirstName(@Param("first_name") String first_name);
 }
