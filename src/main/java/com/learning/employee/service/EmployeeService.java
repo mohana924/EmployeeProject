@@ -2,12 +2,9 @@ package com.learning.employee.service;
 
 import java.util.List;
 
-
-
 import com.learning.employee.entity.Employee;
 
 import reactor.core.publisher.Mono;
-
 
 public interface EmployeeService {
 
@@ -22,7 +19,3 @@ public interface EmployeeService {
 	Mono<Void> deleteEmployee(Long id);
 
 }
-
-	
-	
-

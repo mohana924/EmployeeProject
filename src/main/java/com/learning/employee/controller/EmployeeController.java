@@ -20,7 +20,7 @@ import com.learning.employee.service.EmployeeService;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/employee")
+@RequestMapping("/employees")
 public class EmployeeController {
 
 	private EmployeeService employeeService;
@@ -29,6 +29,7 @@ public class EmployeeController {
 		super();
 		this.employeeService = employeeService;
 	}
+
 	@GetMapping("/")
 	public List<Employee> getAllEmployees() {
 		return employeeService.getAllEmployees();
@@ -37,7 +38,7 @@ public class EmployeeController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Mono<Employee>> findById(@PathVariable long id) {
 		Mono<Employee> e = employeeService.getEmployeeById(id);
-		
+
 		return new ResponseEntity<Mono<Employee>>(e, HttpStatus.OK);
 	}
 
@@ -58,28 +59,4 @@ public class EmployeeController {
 		employeeService.updateEmployee(id, employee);
 		return new ResponseEntity<>("Employee is updated successsfully", HttpStatus.OK);
 	}
-	
-	/*
-	 @GetMapping("/")
-	public List<Employee> getAllEmployees() {
-		return employeeService.getAllEmployees();
-	}
-
-	@GetMapping("/{id}")
-	public Employee getEmployeeById(@PathVariable long id) {
-		return this.employeeService.getEmployeeById(id);
-	}
-
-	@DeleteMapping("/{id}")
-	public void deleteEmployee(@PathVariable(value = "id") long id) {
-		this.employeeService.deleteEmployeeById(id);
-	}
-
-	@PostMapping("/employee/save")
-	@ResponseStatus(HttpStatus.CREATED)
-	public void saveEmployee(@ModelAttribute("employee") Employee employee) {
-		employeeService.saveEmployee(employee);
-	}
-	 */
-	
 }
